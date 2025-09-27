@@ -4,12 +4,6 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true
-  },
-  basePath: '/vibe-yatra',
-  assetPrefix: '/vibe-yatra/',
-  // Enable proper routing for GitHub Pages
-  experimental: {
-    appDir: false
   }
 }
 
