@@ -4,9 +4,7 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true
-  },
-  basePath: '/vibe-yatra',
-  assetPrefix: '/vibe-yatra/'
+  }
 }
 
 module.exports = nextConfig
