@@ -1,11 +1,12 @@
 {
-  "name": "nomad-wheels",
+  "name": "vibe-yatra",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build && next export",
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
     "next": "latest",
