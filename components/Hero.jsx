@@ -1,84 +1,120 @@
-
 import React from "react";
+import Link from "next/link";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
-    <section className="relative h-[100vh] sm:h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-white font-display overflow-hidden">
-      {/* Background Image with Multiple Fallbacks */}
-      <div 
+    <section className="relative min-h-screen flex items-center justify-center text-white font-display overflow-hidden">
+      {/* Background Image with Gradient Overlay */}
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1920&q=80')`,
+        style={{
+          backgroundImage: `url('/hero-bg.png')`,
           backgroundPosition: 'center center',
-          backgroundSize: 'cover'
+          backgroundSize: 'cover',
         }}
       />
-      
-      {/* Backup Background in case image fails */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0A4D54] via-[#0A4D54]/80 to-[#2C7A7B]" />
-      
-      {/* Content Container */}
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-          Your India,{" "}
-          <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-            Your Vibe
-          </span>
-          <span className="text-yellow-400"> ✨</span>
-        </h1>
-        
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-200 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2">
-          Feel the vibe of incredible India with personalized journeys, passionate local drivers, 
-          and authentic experiences that create memories for a lifetime! 🇮🇳
-        </p>
-        
-        <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center max-w-md sm:max-w-lg mx-auto">
-          <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold text-sm sm:text-base rounded-full hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-            🚀 Feel The Vibe Now
-          </button>
-          <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white font-bold text-sm sm:text-base rounded-full hover:bg-white hover:text-[#0A4D54] transition-all duration-300 backdrop-blur-sm">
-            📞 Start Your Yatra: +91-9999-999-999
-          </button>
-        </div>
-        
-        {/* Trust Indicators */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-8 text-xs sm:text-sm text-gray-300">
-          <div className="flex items-center">
-            <span className="text-yellow-400 mr-2 text-sm">⭐⭐⭐⭐⭐</span>
-            <span>4.9/5 Vibe Rating</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-green-400 mr-2">✓</span>
-            <span>15,000+ Happy Vibers</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-blue-400 mr-2">🛡️</span>
-            <span>Good Vibes Guaranteed</span>
-          </div>
-        </div>
-        
-        {/* Hashtag Section */}
-        <div className="mt-6 sm:mt-8">
-          <div className="text-xs sm:text-sm text-yellow-300 font-semibold">
-            #VibeYatra #YourVibeYourYatra #FeelTheVibeIndia
-          </div>
-        </div>
+
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 animate-gradientShift" style={{
+        background: 'linear-gradient(135deg, rgba(10,77,84,0.88) 0%, rgba(10,77,84,0.72) 40%, rgba(15,60,70,0.65) 60%, rgba(228,168,74,0.35) 100%)',
+        backgroundSize: '200% 200%',
+      }} />
+
+      {/* Animated floating orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute w-[500px] h-[500px] rounded-full opacity-20 animate-float"
+          style={{
+            background: 'radial-gradient(circle, rgba(228,168,74,0.4) 0%, transparent 70%)',
+            top: '-10%', right: '-5%',
+            animationDuration: '8s',
+          }}
+        />
+        <div className="absolute w-[400px] h-[400px] rounded-full opacity-15 animate-float"
+          style={{
+            background: 'radial-gradient(circle, rgba(56,189,190,0.35) 0%, transparent 70%)',
+            bottom: '-8%', left: '-5%',
+            animationDuration: '10s',
+            animationDelay: '2s',
+          }}
+        />
+        <div className="absolute w-[250px] h-[250px] rounded-full opacity-10 animate-float"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)',
+            top: '30%', left: '15%',
+            animationDuration: '12s',
+            animationDelay: '4s',
+          }}
+        />
+        <div className="absolute w-[300px] h-[300px] rounded-full opacity-10 animate-float"
+          style={{
+            background: 'radial-gradient(circle, rgba(228,168,74,0.25) 0%, transparent 70%)',
+            top: '60%', right: '20%',
+            animationDuration: '9s',
+            animationDelay: '1s',
+          }}
+        />
+
+        {/* Tiny floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/30 rounded-full animate-float"
+            style={{
+              top: `${15 + i * 14}%`,
+              left: `${10 + i * 15}%`,
+              animationDuration: `${6 + i * 1.5}s`,
+              animationDelay: `${i * 0.8}s`,
+            }}
+          />
+        ))}
       </div>
-      
-      {/* Floating Elements for Visual Appeal - Hidden on mobile for cleaner look */}
-      <div className="absolute top-20 left-10 w-16 h-16 lg:w-20 lg:h-20 bg-yellow-400/20 rounded-full blur-xl animate-pulse hidden md:block" />
-      <div className="absolute bottom-20 right-10 w-24 h-24 lg:w-32 lg:h-32 bg-orange-400/20 rounded-full blur-xl animate-pulse hidden md:block" />
-      <div className="absolute top-1/2 right-20 w-12 h-12 lg:w-16 lg:h-16 bg-white/10 rounded-full blur-lg animate-bounce hidden lg:block" />
-      
-      {/* Scroll Indicator - Adjusted for mobile */}
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-        <div className="flex flex-col items-center">
-          <span className="text-xs sm:text-sm mb-1 sm:mb-2 opacity-80">Scroll to explore</span>
-          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-1 sm:mt-2 animate-pulse"></div>
+
+      {/* Subtle grain texture overlay */}
+      <div className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 text-center px-6 sm:px-8 max-w-4xl mx-auto">
+        {/* Badge */}
+        <div className="animate-fadeInUp" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+          <div className="inline-flex items-center gap-2.5 bg-white/[0.08] backdrop-blur-xl px-5 py-2.5 rounded-full mb-8 border border-white/[0.12]">
+            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+            <span className="text-sm font-medium tracking-wide text-white/90">{t('hero.badge')}</span>
           </div>
         </div>
+
+        {/* Headline */}
+        <div className="animate-fadeInUp" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.05] tracking-tight">
+            {t('hero.title')}
+            <br />
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">
+                {t('hero.titleHighlight')}
+              </span>
+              {/* Decorative underline */}
+              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-yellow-400/0 via-amber-400/60 to-yellow-400/0 rounded-full" />
+            </span>
+          </h1>
+        </div>
+
+        {/* Subtitle */}
+        <div className="animate-fadeInUp" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
+          <p className="text-lg sm:text-xl md:text-2xl mb-12 text-white/75 max-w-2xl mx-auto leading-relaxed font-body font-light">
+            {t('hero.subtitle')}
+          </p>
+        </div>
+
       </div>
+
+      {/* Bottom gradient fade into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F8F7F2] dark:from-gray-900 to-transparent" />
     </section>
   );
 }

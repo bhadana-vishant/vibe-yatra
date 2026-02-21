@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Mitchell",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "tour": "Golden Triangle Tour",
+    "rating": 5,
+    "text": "Our driver Rajesh was incredible! He knew all the best spots for photos, recommended amazing restaurants, and made our first trip to India absolutely magical. Can't recommend Vibe Yatra enough!",
+    "date": "2025-11-15",
+    "approved": true
+  },
+  {
+    "id": 2,
+    "name": "Michael & Anna",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "tour": "Rajasthan Royal Heritage Tour",
+    "rating": 5,
+    "text": "10 days of pure magic! From Jaipur's palaces to Jaisalmer's desert, every moment was perfectly planned. The flexibility to change plans on the go was a game-changer.",
+    "date": "2025-10-20",
+    "approved": true
+  },
+  {
+    "id": 3,
+    "name": "James Thompson",
+    "country": "Australia",
+    "flag": "🇦🇺",
+    "tour": "Leh Ladakh Adventure Tour",
+    "rating": 5,
+    "text": "The Ladakh trip was life-changing! Our driver navigated those mountain roads like a pro. Pangong Lake at sunrise is something I'll never forget. Worth every penny!",
+    "date": "2025-09-05",
+    "approved": true
+  },
+  {
+    "id": 4,
+    "name": "Emma Wilson",
+    "country": "United Kingdom",
+    "flag": "🇬🇧",
+    "tour": "Himachal Valley Tour",
+    "rating": 5,
+    "text": "Traveling solo as a woman, safety was my priority. Vibe Yatra exceeded all expectations. The driver was professional, the homestays were charming, and I felt completely safe throughout.",
+    "date": "2025-08-12",
+    "approved": true
+  },
+  {
+    "id": 5,
+    "name": "Pierre Dubois",
+    "country": "France",
+    "flag": "🇫🇷",
+    "tour": "Classic Golden Triangle Tour",
+    "rating": 5,
+    "text": "From the Taj Mahal at sunrise to the bustling streets of Old Delhi, every moment was curated to perfection. Our driver was not just a chauffeur but a cultural guide. Magnifique!",
+    "date": "2025-12-01",
+    "approved": true
+  },
+  {
+    "id": 6,
+    "name": "Yuki Tanaka",
+    "country": "Japan",
+    "flag": "🇯🇵",
+    "tour": "Rajasthan Palaces and Lakes Tour",
+    "rating": 5,
+    "text": "Udaipur stole my heart! The boat ride on Lake Pichola during sunset was surreal. The entire journey through Rajasthan felt like stepping into a fairy tale. Highly recommended!",
+    "date": "2025-07-28",
+    "approved": true
+  },
+  {
+    "id": 7,
+    "name": "Carlos & Maria Rodriguez",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "tour": "Golden Triangle and Varanasi Spiritual Tour",
+    "rating": 4,
+    "text": "The spiritual experience in Varanasi combined with the grandeur of the Golden Triangle was unforgettable. The Ganga Aarti ceremony left us speechless. A truly transformative journey.",
+    "date": "2025-06-10",
+    "approved": true
+  },
+  {
+    "id": 8,
+    "name": "Lisa van den Berg",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "tour": "Classic Himachal Hill Station Tour",
+    "rating": 5,
+    "text": "Shimla, Manali, and Dharamshala — each place had its own magic. The mountain roads were breathtaking, and our driver made us feel safe on every turn. Perfect escape from the heat!",
+    "date": "2025-05-18",
+    "approved": true
+  },
+  {
+    "id": 9,
+    "name": "Hemant Rajput",
+    "country": "India",
+    "flag": "🇮🇳",
+    "tour": "Rajasthan Royal Heritage Tour",
+    "rating": 5,
+    "text": "It was one of the best experience I had and I fully recomend everyone to visit",
+    "date": "2026-02-21",
+    "approved": true
+  }
+]
