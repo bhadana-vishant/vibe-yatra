@@ -13,6 +13,10 @@ function saveReviews(reviews) {
     inMemoryReviews = reviews;
 }
 
+export const config = {
+    runtime: 'edge',
+};
+
 export default function handler(req, res) {
     if (req.method === 'GET') {
         try {
