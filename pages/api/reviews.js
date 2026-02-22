@@ -1,15 +1,16 @@
-import fs from 'fs';
-import path from 'path';
+import reviewsData from '../../data/reviews.json';
 
-const reviewsFilePath = path.join(process.cwd(), 'data', 'reviews.json');
+// In a serverless environment like Cloudflare Pages, we cannot read/write to the local filesystem using 'fs'.
+// We temporarily hold new reviews in memory (though they will reset if the serverless function cold starts).
+// For permanent storage, this will be connected to a database like Cloudflare D1 later.
+let inMemoryReviews = [...reviewsData];
 
 function getReviews() {
-    const data = fs.readFileSync(reviewsFilePath, 'utf8');
-    return JSON.parse(data);
+    return inMemoryReviews;
 }
 
 function saveReviews(reviews) {
-    fs.writeFileSync(reviewsFilePath, JSON.stringify(reviews, null, 2), 'utf8');
+    inMemoryReviews = reviews;
 }
 
 export default function handler(req, res) {
