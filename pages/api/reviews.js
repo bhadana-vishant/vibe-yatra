@@ -1,68 +1,125 @@
-import reviewsData from '../../data/reviews.json';
-
-// In a serverless environment like Cloudflare Pages, we cannot read/write to the local filesystem using 'fs'.
-// We temporarily hold new reviews in memory (though they will reset if the serverless function cold starts).
-// For permanent storage, this will be connected to a database like Cloudflare D1 later.
-let inMemoryReviews = [...reviewsData];
-
-function getReviews() {
-    return inMemoryReviews;
-}
-
-function saveReviews(reviews) {
-    inMemoryReviews = reviews;
-}
-
 export const config = {
     runtime: 'edge',
 };
 
-export default function handler(req, res) {
-    if (req.method === 'GET') {
-        try {
-            const reviews = getReviews();
-            const approved = reviews
-                .filter(r => r.approved)
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
-            return res.status(200).json(approved);
-        } catch (error) {
-            return res.status(500).json({ error: 'Failed to load reviews' });
+function getDB() {
+    // Try @cloudflare/next-on-pages context first
+    try {
+        const { getRequestContext } = require('@cloudflare/next-on-pages');
+        const ctx = getRequestContext();
+        if (ctx && ctx.env && ctx.env.DB) {
+            return ctx.env.DB;
         }
+    } catch (e) {
+        // getRequestContext not available
     }
 
-    if (req.method === 'POST') {
-        try {
-            const { name, country, flag, tour, rating, text } = req.body;
-
-            if (!name || !country || !tour || !rating || !text) {
-                return res.status(400).json({ error: 'All fields are required' });
-            }
-
-            if (rating < 1 || rating > 5) {
-                return res.status(400).json({ error: 'Rating must be between 1 and 5' });
-            }
-
-            const reviews = getReviews();
-            const newReview = {
-                id: reviews.length > 0 ? Math.max(...reviews.map(r => r.id)) + 1 : 1,
-                name: name.trim(),
-                country: country.trim(),
-                flag: flag || '🌍',
-                tour: tour.trim(),
-                rating: parseInt(rating),
-                text: text.trim(),
-                date: new Date().toISOString().split('T')[0],
-                approved: true
-            };
-
-            reviews.push(newReview);
-            saveReviews(reviews);
-
-            return res.status(201).json(newReview);
-        } catch (error) {
-            return res.status(500).json({ error: 'Failed to save review' });
-        }
+    // Try process.env (Cloudflare Pages injects bindings here too)
+    if (typeof process !== 'undefined' && process.env && process.env.DB) {
+        return process.env.DB;
     }
 
-    return res.status(405).json({ error: 'Method not allowed' });
+    return null;
+}
+
+export default async function handler(req) {
+    try {
+        const db = getDB();
+
+        if (!db) {
+            return new Response(JSON.stringify({ error: 'Database binding not available' }), {
+                status: 503,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+
+        if (req.method === 'GET') {
+            try {
+                const { results } = await db
+                    .prepare('SELECT * FROM reviews WHERE approved = 1 ORDER BY rating DESC, date DESC')
+                    .all();
+                return new Response(JSON.stringify(results), {
+                    status: 200,
+                    headers: { 'Content-Type': 'application/json' },
+                });
+            } catch (error) {
+                console.error('Failed to fetch reviews:', error);
+                return new Response(JSON.stringify({ error: 'Failed to load reviews' }), {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' },
+                });
+            }
+        }
+
+        if (req.method === 'POST') {
+            try {
+                const body = await req.json();
+                const { name, country, flag, tour, rating, text } = body;
+
+                if (!name || !country || !tour || !rating || !text) {
+                    return new Response(JSON.stringify({ error: 'All fields are required' }), {
+                        status: 400,
+                        headers: { 'Content-Type': 'application/json' },
+                    });
+                }
+
+                if (rating < 1 || rating > 5) {
+                    return new Response(JSON.stringify({ error: 'Rating must be between 1 and 5' }), {
+                        status: 400,
+                        headers: { 'Content-Type': 'application/json' },
+                    });
+                }
+
+                const date = new Date().toISOString().split('T')[0];
+                const result = await db
+                    .prepare(
+                        'INSERT INTO reviews (name, country, flag, tour, rating, text, date, approved) VALUES (?, ?, ?, ?, ?, ?, ?, 1)'
+                    )
+                    .bind(
+                        name.trim(),
+                        country.trim(),
+                        flag || '🌍',
+                        tour.trim(),
+                        parseInt(rating),
+                        text.trim(),
+                        date
+                    )
+                    .run();
+
+                const newReview = {
+                    id: result.meta.last_row_id,
+                    name: name.trim(),
+                    country: country.trim(),
+                    flag: flag || '🌍',
+                    tour: tour.trim(),
+                    rating: parseInt(rating),
+                    text: text.trim(),
+                    date,
+                    approved: 1,
+                };
+
+                return new Response(JSON.stringify(newReview), {
+                    status: 201,
+                    headers: { 'Content-Type': 'application/json' },
+                });
+            } catch (error) {
+                console.error('Failed to save review:', error);
+                return new Response(JSON.stringify({ error: 'Failed to save review' }), {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' },
+                });
+            }
+        }
+
+        return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+            status: 405,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    } catch (error) {
+        console.error('Unhandled error in reviews API:', error);
+        return new Response(JSON.stringify({ error: 'Internal server error', details: error.message }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    }
 }
