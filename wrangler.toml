@@ -1,0 +1,8 @@
+name = "vibe-yatra"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "vibe-yatra-reviews"
+database_id = "ffa70b58-e0e3-4713-b687-5cb52f9fb923"
