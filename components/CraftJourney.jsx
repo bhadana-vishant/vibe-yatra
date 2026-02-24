@@ -45,13 +45,13 @@ export default function CraftJourney() {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://wa.me/919720159067?text=Hi! I'd like to plan a custom tour."
+                  href="https://wa.me/916361519067?text=Hi! I'd like to plan a custom tour."
                   className="px-6 py-3 bg-yellow-400 text-[#0A4D54] font-bold rounded-full hover:bg-yellow-300 transition-colors text-center"
                 >
                   💬 {t('craftJourney.chatWhatsApp')}
                 </a>
                 <a
-                  href="mailto:bhadanavishant0009@gmail.com"
+                  href="mailto:businessvibeyatra@gmail.com"
                   className="px-6 py-3 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-[#0A4D54] transition-colors text-center"
                 >
                   ✉️ {t('craftJourney.emailUs')}

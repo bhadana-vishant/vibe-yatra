@@ -95,7 +95,7 @@ export default function WhyUs() {
               <div className="text-sm opacity-80">{t('whyUs.cta.ready')}</div>
               <div className="font-bold">{t('whyUs.cta.contact')}</div>
             </div>
-            <a href="tel:+919720159067" className="px-6 py-2 bg-white text-[#0A4D54] rounded-full font-bold hover:bg-gray-100 transition-colors">
+            <a href="tel:+916361519067" className="px-6 py-2 bg-white text-[#0A4D54] rounded-full font-bold hover:bg-gray-100 transition-colors">
               📞 {t('whyUs.cta.callNow')}
             </a>
           </div>

@@ -147,10 +147,10 @@ export default function DestinationPage() {
                         Let us craft a personalized {destination.name} itinerary just for you.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="tel:+919720159067" className="px-8 py-4 bg-white text-[#0A4D54] font-bold rounded-full hover:bg-gray-100 transition-colors">
+                        <a href="tel:+916361519067" className="px-8 py-4 bg-white text-[#0A4D54] font-bold rounded-full hover:bg-gray-100 transition-colors">
                             📞 Call Now
                         </a>
-                        <a href="https://wa.me/919720159067" className="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-[#0A4D54] transition-colors">
+                        <a href="https://wa.me/916361519067" className="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-[#0A4D54] transition-colors">
                             💬 WhatsApp Us
                         </a>
                     </div>

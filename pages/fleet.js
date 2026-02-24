@@ -50,7 +50,7 @@ export default function FleetPage() {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const handleWhatsapp = () => {
-    window.open(`https://wa.me/919720159067?text=${encodeURIComponent("Hi! I would like to get a quote for a vehicle booking.")}`, '_blank');
+    window.open(`https://wa.me/916361519067?text=${encodeURIComponent("Hi! I would like to get a quote for a vehicle booking.")}`, '_blank');
   };
 
   return (
@@ -194,9 +194,9 @@ function BookingModal({ vehicle, onClose }) {
     const text = `Hi, I would like to get a quote for booking a ${vehicle?.name}.%0A%0AName: ${formData.name}%0APhone: ${formData.phone}${emailStr}%0ADate: ${formData.date}%0APickup: ${formData.pickupLocation}%0ADestination: ${formData.destination}${messageStr}`;
 
     if (submitAction === 'whatsapp') {
-      window.open(`https://wa.me/919720159067?text=${text}`, '_blank');
+      window.open(`https://wa.me/916361519067?text=${text}`, '_blank');
     } else {
-      window.open(`mailto:bhadanavishant0009@gmail.com?subject=Vehicle Booking Quote: ${vehicle?.name}&body=${text}`, '_blank');
+      window.open(`mailto:businessvibeyatra@gmail.com?subject=Vehicle Booking Quote: ${vehicle?.name}&body=${text}`, '_blank');
     }
     onClose();
   };

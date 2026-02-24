@@ -135,7 +135,7 @@ export default function TourDetailPage() {
                                         >
                                             <button
                                                 onClick={() => setActiveDay(activeDay === idx ? null : idx)}
-                                                className="w-full flex items-center gap-4 p-4 md:p-5 text-left hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
+                                                className="w-full flex items-center gap-4 p-4 md:p-5 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                                             >
                                                 <div className="w-12 h-12 bg-gradient-to-br from-[#0A4D54] to-[#0A4D54]/80 rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0">
                                                     Day {day.day}
@@ -242,19 +242,19 @@ export default function TourDetailPage() {
                                     </div>
 
                                     <a
-                                        href={`https://wa.me/919720159067?text=Hi! I'm interested in the ${tour.title} tour package. Please share details and pricing.`}
+                                        href={`https://wa.me/916361519067?text=Hi! I'm interested in the ${tour.title} tour package. Please share details and pricing.`}
                                         className="block w-full text-center px-6 py-4 bg-[#25D366] text-white font-bold rounded-xl hover:bg-[#20bd5a] transition-colors mb-3 shadow-md hover:shadow-lg"
                                     >
                                         💬 Inquire on WhatsApp
                                     </a>
                                     <a
-                                        href={`mailto:bhadanavishant0009@gmail.com?subject=Inquiry: ${tour.title} Tour`}
+                                        href={`mailto:businessvibeyatra@gmail.com?subject=Inquiry: ${tour.title} Tour`}
                                         className="block w-full text-center px-6 py-4 border-2 border-[#0A4D54] text-[#0A4D54] dark:text-white dark:border-gray-600 font-bold rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors mb-3 shadow-sm hover:shadow-md"
                                     >
                                         ✉️ Email Us
                                     </a>
                                     <a
-                                        href="tel:+919720159067"
+                                        href="tel:+916361519067"
                                         className="block w-full text-center px-6 py-4 bg-[#0A4D54] text-white font-bold rounded-xl hover:bg-[#0A4D54]/90 transition-colors shadow-md hover:shadow-lg"
                                     >
                                         📞 Call Us Now
